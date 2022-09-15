@@ -1,4 +1,5 @@
 const Joi = require('joi');
+const { objectId } = require('./custom.validation');
 
 const bodyRes = {
   orderId: Joi.string().required(),
@@ -11,6 +12,7 @@ const bodyRes = {
 const createShipmentHistory = {
   body: Joi.object().keys(bodyRes),
 };
+
 const getShipmentHistory = {
   query: Joi.object().keys({
     orderId: Joi.string().required(),
@@ -19,7 +21,12 @@ const getShipmentHistory = {
   }),
 };
 
+const deleteShipmentHistory = {
+  body: Joi.object().keys({ orderId: Joi.string().required() }),
+};
+
 module.exports = {
   createShipmentHistory,
   getShipmentHistory,
+  deleteShipmentHistory,
 };

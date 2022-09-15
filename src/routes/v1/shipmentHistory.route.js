@@ -17,6 +17,11 @@ router
     auth('manageShipmentHistory'),
     validate(shipmentHistoryValidation.getShipmentHistory),
     shipmentHistoryController.getShipmentHistory
+  )
+  .delete(
+    auth('manageShipmentHistory'),
+    validate(shipmentHistoryValidation.deleteShipmentHistory),
+    shipmentHistoryController.deleteShipmentHistory
   );
 
 module.exports = router;

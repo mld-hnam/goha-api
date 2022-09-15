@@ -65,7 +65,7 @@ const deleteShipmentHistoryById = async (shipmentHistoryId) => {
   if (!shipmentHistory) {
     throw new ApiError(httpStatus.NOT_FOUND, 'shipment History not found');
   }
-  await ShipmentHistory.remove();
+  await shipmentHistory.remove();
   return shipmentHistory;
 };
 

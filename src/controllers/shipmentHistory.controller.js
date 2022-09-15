@@ -4,6 +4,7 @@ const getPeerFilter = require('../utils/getPeerFilter');
 const ApiError = require('../utils/ApiError');
 const catchAsync = require('../utils/catchAsync');
 const { shipmentHistoryService } = require('../services');
+const { ShipmentHistory } = require('../models');
 
 const createShipmentHistory = catchAsync(async (req, res) => {
   const { status, userId, orderId } = req.body;
@@ -24,7 +25,21 @@ const getShipmentHistory = catchAsync(async (req, res) => {
   res.send(result);
 });
 
+const deleteShipmentHistory = catchAsync(async (req, res) => {
+  const { orderId } = req.body;
+  const shipmentHistoryData = await ShipmentHistory.find({ orderId });
+  if (shipmentHistoryData && shipmentHistoryData.length > 0) {
+    shipmentHistoryData.map(async (item) => {
+      await shipmentHistoryService.deleteShipmentHistoryById(item._id);
+    });
+    res.status(httpStatus.NO_CONTENT).send();
+  } else {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Shipment History find by orderId not found');
+  }
+});
+
 module.exports = {
   createShipmentHistory,
   getShipmentHistory,
+  deleteShipmentHistory,
 };
