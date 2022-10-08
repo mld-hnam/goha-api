@@ -12,9 +12,19 @@ router
   .get(auth('getOrders'), validate(orderValidation.getOrders), orderController.getOrders);
 
 router
+  .route('/order-flight')
+  .get(auth('getOrders'), validate(orderValidation.getOrderFlight), orderController.getOrderFlight);
+
+router
   .route('/:orderId')
   .get(auth('getOrders'), validate(orderValidation.getOrder), orderController.getOrder)
   .put(auth('manageOrders'), validate(orderValidation.updateOrder), orderController.updateOrder)
   .delete(auth('manageOrders'), validate(orderValidation.deleteOrder), orderController.deleteOrder);
+
+router
+  .route('/order-user/:userId')
+  .get(auth('getOrders'), validate(orderValidation.getOrderUser), orderController.getOrderUser);
+
+// router.post('/find-code', validate(orderValidation.getOrderByCode), orderValidation.getOrderByCode);
 
 module.exports = router;

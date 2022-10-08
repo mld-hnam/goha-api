@@ -18,6 +18,7 @@ const bodyRes = {
   declareValue: Joi.number(),
   paymentBy: Joi.string().required().valid('ZELLE', 'CASH', 'UNPAID'),
   totalCost: Joi.number().required(),
+  fees: Joi.array(),
 };
 
 const createOrder = {
@@ -59,10 +60,36 @@ const deleteOrder = {
   }),
 };
 
+const getOrderUser = {
+  params: Joi.object().keys({
+    userId: Joi.string().custom(objectId),
+  }),
+};
+
+const getOrderFlight = {
+  query: Joi.object().keys({
+    flightNo: Joi.string(),
+    sortBy: Joi.string(),
+    limit: Joi.number().integer(),
+    page: Joi.number().integer(),
+    createdAt: Joi.string(),
+    userId: Joi.string().custom(objectId),
+  }),
+};
+
+const getOrderByCode = {
+  query: Joi.object().keys({
+    code: Joi.string(),
+  }),
+};
+
 module.exports = {
   createOrder,
   getOrders,
   getOrder,
   updateOrder,
   deleteOrder,
+  getOrderUser,
+  getOrderFlight,
+  getOrderByCode,
 };

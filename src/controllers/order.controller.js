@@ -30,6 +30,21 @@ const getOrder = catchAsync(async (req, res) => {
   res.send(order);
 });
 
+const getOrderUser = catchAsync(async (req, res) => {
+  const order = await orderService.getOrderByUserId(req.params.userId);
+  if (!order) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Order not found');
+  }
+  res.send(order);
+});
+
+const getOrderFlight = catchAsync(async (req, res) => {
+  const filterStatus = pick(req.query, ['userId', 'flightNo']);
+  const options = pick(req.query, ['sortBy', 'limit', 'page']);
+  const result = await orderService.queryOrders({ ...filterStatus }, options);
+  res.send(result);
+});
+
 const updateOrder = catchAsync(async (req, res) => {
   const order = await orderService.updateOrderById(req.params.orderId, req.body);
   res.send(order);
@@ -46,4 +61,6 @@ module.exports = {
   getOrder,
   updateOrder,
   deleteOrder,
+  getOrderUser,
+  getOrderFlight,
 };

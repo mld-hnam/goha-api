@@ -16,6 +16,7 @@ router
   .get(auth('getCustomers'), validate(customerValidation.getCustomer), customerController.getCustomer)
   .put(auth('manageCustomers'), validate(customerValidation.updateCustomer), customerController.updateCustomer)
   .delete(auth('manageCustomers'), validate(customerValidation.deleteCustomer), customerController.deleteCustomer);
+
 router
   .route('/checkemail')
   .post(auth('getCustomers'), validate(customerValidation.checkEmail), customerController.checkEmail);

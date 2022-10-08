@@ -8,7 +8,7 @@ const permission = [
   'manageShipmentHistory',
 ];
 const allRoles = {
-  user: [],
+  user: permission,
   admin: permission,
   agency: permission,
 };
