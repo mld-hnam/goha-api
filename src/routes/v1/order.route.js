@@ -6,9 +6,12 @@ const orderController = require('../../controllers/order.controller');
 
 const router = express.Router();
 
+router.post('/find-code', validate(orderValidation.getOrderByCode), orderController.getOrderByCode);
+
 router
   .route('/')
   .post(auth('manageOrders'), validate(orderValidation.createOrder), orderController.createOrder)
+  .put(auth('manageOrders'), validate(orderValidation.updateOrders), orderController.updateOrders)
   .get(auth('getOrders'), validate(orderValidation.getOrders), orderController.getOrders);
 
 router
@@ -24,7 +27,5 @@ router
 router
   .route('/order-user/:userId')
   .get(auth('getOrders'), validate(orderValidation.getOrderUser), orderController.getOrderUser);
-
-// router.post('/find-code', validate(orderValidation.getOrderByCode), orderValidation.getOrderByCode);
 
 module.exports = router;

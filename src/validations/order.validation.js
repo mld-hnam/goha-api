@@ -54,6 +54,18 @@ const updateOrder = {
     .min(1),
 };
 
+const updateOrders = {
+  body: Joi.object()
+    .keys({
+      ids: Joi.array(),
+      status: Joi.string(),
+      userId: Joi.string().custom(objectId),
+      note: Joi.string(),
+      state: Joi.boolean(),
+    })
+    .min(1),
+};
+
 const deleteOrder = {
   params: Joi.object().keys({
     orderId: Joi.string().custom(objectId),
@@ -78,9 +90,7 @@ const getOrderFlight = {
 };
 
 const getOrderByCode = {
-  query: Joi.object().keys({
-    code: Joi.string(),
-  }),
+  body: Joi.object().keys({ code: Joi.string() }),
 };
 
 module.exports = {
@@ -92,4 +102,5 @@ module.exports = {
   getOrderUser,
   getOrderFlight,
   getOrderByCode,
+  updateOrders,
 };

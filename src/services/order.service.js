@@ -58,6 +58,14 @@ const getOrderByUserId = async (userId) => {
   return order;
 };
 
+const getOrderByCode = async (code) => {
+  const order = await Order.findOne({ code });
+  if (!order) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Order not found');
+  }
+  return order;
+};
+
 /**
  * Delete order by id
  * @param {ObjectId} orderId
@@ -79,4 +87,5 @@ module.exports = {
   updateOrderById,
   deleteOrderById,
   getOrderByUserId,
+  getOrderByCode,
 };

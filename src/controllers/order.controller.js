@@ -3,8 +3,9 @@ const pick = require('../utils/pick');
 const getPeerFilter = require('../utils/getPeerFilter');
 const ApiError = require('../utils/ApiError');
 const catchAsync = require('../utils/catchAsync');
-const { orderService } = require('../services');
+const { orderService, shipmentHistoryService } = require('../services');
 const generateCode = require('../utils/generateCode');
+const { ShipmentHistory } = require('../models');
 
 const createOrder = catchAsync(async (req, res) => {
   const payload = req.body;
@@ -50,6 +51,41 @@ const updateOrder = catchAsync(async (req, res) => {
   res.send(order);
 });
 
+const updateOrders = catchAsync(async (req, res) => {
+  const { ids, status, userId, note, state } = req.body;
+  if (!ids && ids.length <= 0) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Orders not found');
+  }
+
+  const updateItem = async (item) => {
+    const order = await orderService.getOrderById(item);
+    if (order) {
+      await orderService.updateOrderById(order._id, { ...order, status });
+      const findHistory = await ShipmentHistory.findOne({ orderId: item, status, userId });
+
+      if (findHistory) {
+        await shipmentHistoryService.updateShipmentHistoryById(findHistory._id, { note, state, status });
+      } else {
+        await shipmentHistoryService.createShipmentHistory({ status, userId, note, state, orderId: item });
+      }
+    }
+  };
+
+  const promises = ids.map(updateItem);
+
+  await Promise.all(promises);
+
+  res.status(httpStatus.OK).send();
+});
+
+const getOrderByCode = catchAsync(async (req, res) => {
+  const order = await orderService.getOrderByCode(req.body.code);
+  if (!order) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Order not found');
+  }
+  res.send(order);
+});
+
 const deleteOrder = catchAsync(async (req, res) => {
   await orderService.deleteOrderById(req.params.orderId);
   res.status(httpStatus.NO_CONTENT).send();
@@ -63,4 +99,6 @@ module.exports = {
   deleteOrder,
   getOrderUser,
   getOrderFlight,
+  updateOrders,
+  getOrderByCode,
 };

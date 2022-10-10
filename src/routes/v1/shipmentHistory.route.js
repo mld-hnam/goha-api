@@ -6,6 +6,12 @@ const shipmentHistoryController = require('../../controllers/shipmentHistory.con
 
 const router = express.Router();
 
+router.get(
+  '/get-all',
+  validate(shipmentHistoryValidation.getAllShipmentHistory),
+  shipmentHistoryController.getAllShipmentHistory
+);
+
 router
   .route('/')
   .post(
