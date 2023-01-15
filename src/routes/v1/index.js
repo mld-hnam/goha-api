@@ -4,6 +4,7 @@ const userRoute = require('./user.route');
 const orderRoute = require('./order.route');
 const customerRoute = require('./customer.route');
 const shipmentHistory = require('./shipmentHistory.route');
+const flight = require('./flight.route');
 const docsRoute = require('./docs.route');
 const config = require('../../config/config');
 
@@ -29,6 +30,10 @@ const defaultRoutes = [
   {
     path: '/shipmentHistory',
     route: shipmentHistory,
+  },
+  {
+    path: '/flights',
+    route: flight,
   },
 ];
 

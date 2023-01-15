@@ -6,6 +6,8 @@ const permission = [
   'manageCustomers',
   'getCustomers',
   'manageShipmentHistory',
+  'manageFlights',
+  'getFlights',
 ];
 const allRoles = {
   user: permission,
