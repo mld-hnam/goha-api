@@ -2,7 +2,6 @@ const Joi = require('joi');
 const { objectId } = require('./custom.validation');
 
 const bodyRes = {
-  userId: Joi.string().required(),
   code: Joi.string().required(),
 };
 
@@ -24,7 +23,7 @@ const getFlights = {
 
 const updateFlight = {
   params: Joi.object().keys({
-    orderId: Joi.required().custom(objectId),
+    flightId: Joi.required().custom(objectId),
   }),
   body: Joi.object()
     .keys({ ...bodyRes, createdAt: Joi.string(), updatedAt: Joi.string(), id: Joi.string().required() })
@@ -33,7 +32,7 @@ const updateFlight = {
 
 const deleteFlight = {
   params: Joi.object().keys({
-    orderId: Joi.string().custom(objectId),
+    flightId: Joi.string().custom(objectId),
   }),
 };
 

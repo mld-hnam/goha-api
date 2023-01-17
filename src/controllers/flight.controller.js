@@ -12,42 +12,42 @@ const createFlight = catchAsync(async (req, res) => {
 });
 
 const getFlights = catchAsync(async (req, res) => {
-  const parseSearchText = getPeerFilter(req.query.filter, ['code', 'name']);
+  const parseSearchText = getPeerFilter(req.query.filter, ['code']);
   const options = pick(req.query, ['sortBy', 'limit', 'page']);
   const result = await flightService.queryFlights({ ...parseSearchText }, options);
   res.send(result);
 });
 
 const getFlight = catchAsync(async (req, res) => {
-  const order = await flightService.getOrderById(req.params.orderId);
-  if (!order) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Order not found');
+  const flight = await flightService.getFlightById(req.params.flightId);
+  if (!flight) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Flight not found');
   }
-  res.send(order);
+  res.send(flight);
 });
 
 const getFlightUser = catchAsync(async (req, res) => {
-  const order = await flightService.getOrderByUserId(req.params.userId);
-  if (!order) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Order not found');
+  const flight = await flightService.getFlightByFlightId(req.params.flightId);
+  if (!flight) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Flight not found');
   }
-  res.send(order);
+  res.send(flight);
 });
 
 const getOrderFlight = catchAsync(async (req, res) => {
-  const filterStatus = pick(req.query, ['userId', 'flightNo']);
+  const filterStatus = pick(req.query, ['flightId', 'code']);
   const options = pick(req.query, ['sortBy', 'limit', 'page']);
-  const result = await flightService.queryOrders({ ...filterStatus }, options);
+  const result = await flightService.queryFlights({ ...filterStatus }, options);
   res.send(result);
 });
 
 const updateFlight = catchAsync(async (req, res) => {
-  const order = await flightService.updateOrderById(req.params.orderId, req.body);
-  res.send(order);
+  const flight = await flightService.updateFlightById(req.params.flightId, req.body);
+  res.send(flight);
 });
 
 const deleteFlight = catchAsync(async (req, res) => {
-  await flightService.deleteOrderById(req.params.orderId);
+  await flightService.deleteFlightById(req.params.flightId);
   res.status(httpStatus.NO_CONTENT).send();
 });
 

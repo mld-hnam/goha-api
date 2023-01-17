@@ -15,10 +15,6 @@ const getFlightById = async (id) => {
   return Flight.findById(id);
 };
 
-const getFlightByEmail = async (email) => {
-  return Flight.findOne({ email });
-};
-
 const updateFlightById = async (flightId, updateBody) => {
   const flight = await getFlightById(flightId);
   if (!flight) {
@@ -42,7 +38,6 @@ module.exports = {
   createFlight,
   queryFlights,
   getFlightById,
-  getFlightByEmail,
   updateFlightById,
   deleteFlightById,
 };
