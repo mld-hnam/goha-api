@@ -3,6 +3,7 @@ const { objectId } = require('./custom.validation');
 
 const bodyRes = {
   code: Joi.string().required(),
+  userId: Joi.string(),
 };
 
 const createFlight = {
