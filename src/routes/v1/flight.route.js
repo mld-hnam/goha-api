@@ -17,4 +17,8 @@ router
   .put(auth('manageFlights'), validate(flightValidation.updateFlight), flightController.updateFlight)
   .delete(auth('manageFlights'), validate(flightValidation.deleteFlight), flightController.deleteFlight);
 
+router
+  .route('/flight-user/:userId')
+  .get(auth('getOrders'), validate(flightValidation.getFlightUser), flightController.getFlightUser);
+
 module.exports = router;

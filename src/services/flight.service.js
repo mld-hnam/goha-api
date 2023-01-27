@@ -15,6 +15,14 @@ const getFlightById = async (id) => {
   return Flight.findById(id);
 };
 
+const getFlightByUserId = async (userId) => {
+  const flight = await Flight.find({ userId });
+  if (!flight) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Flight not found');
+  }
+  return flight;
+};
+
 const updateFlightById = async (flightId, updateBody) => {
   const flight = await getFlightById(flightId);
   if (!flight) {
@@ -40,4 +48,5 @@ module.exports = {
   getFlightById,
   updateFlightById,
   deleteFlightById,
+  getFlightByUserId,
 };

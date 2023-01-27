@@ -27,7 +27,7 @@ const getFlight = catchAsync(async (req, res) => {
 });
 
 const getFlightUser = catchAsync(async (req, res) => {
-  const flight = await flightService.getFlightByFlightId(req.params.flightId);
+  const flight = await flightService.getFlightByUserId(req.params.userId);
   if (!flight) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Flight not found');
   }

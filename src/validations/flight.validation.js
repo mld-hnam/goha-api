@@ -52,6 +52,12 @@ const getFlightByCode = {
   body: Joi.object().keys({ code: Joi.string() }),
 };
 
+const getFlightUser = {
+  params: Joi.object().keys({
+    userId: Joi.string().custom(objectId),
+  }),
+};
+
 module.exports = {
   createFlight,
   getFlights,
@@ -59,4 +65,5 @@ module.exports = {
   updateFlight,
   deleteFlight,
   getFlightByCode,
+  getFlightUser,
 };
