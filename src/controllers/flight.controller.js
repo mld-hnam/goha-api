@@ -14,7 +14,8 @@ const createFlight = catchAsync(async (req, res) => {
 const getFlights = catchAsync(async (req, res) => {
   const parseSearchText = getPeerFilter(req.query.filter, ['code']);
   const options = pick(req.query, ['sortBy', 'limit', 'page']);
-  const result = await flightService.queryFlights({ ...parseSearchText }, options);
+  const filterStatus = pick(req.query, ['userId']);
+  const result = await flightService.queryFlights({ ...parseSearchText, ...filterStatus }, options);
   res.send(result);
 });
 
