@@ -18,6 +18,9 @@ const bodyRes = {
   declareValue: Joi.number(),
   paymentBy: Joi.string().required().valid('ZELLE', 'CASH', 'UNPAID'),
   totalCost: Joi.number().required(),
+  address: Joi.string().required(),
+  packageNumber: Joi.string().required(),
+  packageDescription: Joi.string().required(),
   fees: Joi.array(),
 };
 

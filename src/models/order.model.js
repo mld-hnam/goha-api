@@ -60,6 +60,21 @@ const orderSchema = mongoose.Schema(
       required: true,
       trim: true,
     },
+    address: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    packageNumber: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    packageDescription: {
+      type: String,
+      required: true,
+      trim: true,
+    },
     flightNo: {
       type: String,
       required: true,
