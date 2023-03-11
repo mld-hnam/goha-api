@@ -18,7 +18,7 @@ router
   .delete(auth('manageCustomers'), validate(customerValidation.deleteCustomer), customerController.deleteCustomer);
 
 router
-  .route('/checkemail')
+  .route('/check-email')
   .post(auth('getCustomers'), validate(customerValidation.checkEmail), customerController.checkEmail);
 
 module.exports = router;

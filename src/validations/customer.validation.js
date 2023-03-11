@@ -14,11 +14,12 @@ const createCustomer = {
 
 const getCustomers = {
   query: Joi.object().keys({
-    fullname: Joi.string(),
-    phone: Joi.string(),
-    email: Joi.string(),
-    userId: Joi.string(),
     filter: Joi.string(),
+    name: Joi.string(),
+    phone: Joi.string(),
+    sortBy: Joi.string(),
+    limit: Joi.number().integer(),
+    page: Joi.number().integer(),
   }),
 };
 
