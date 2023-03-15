@@ -51,7 +51,7 @@ const updateShipmentHistoryById = async (id, updateBody) => {
     throw new ApiError(httpStatus.NOT_FOUND, 'Shipment History search by id not found');
   }
   Object.assign(shipmentHistory, updateBody);
-  await shipmentHistory.save();
+  await ShipmentHistory.save();
   return shipmentHistory;
 };
 
