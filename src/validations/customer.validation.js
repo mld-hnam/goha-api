@@ -26,7 +26,7 @@ const getCustomers = {
 
 const getCustomer = {
   params: Joi.object().keys({
-    customerID: Joi.string().custom(objectId),
+    customerId: Joi.string().custom(objectId),
   }),
 };
 
@@ -36,7 +36,7 @@ const checkEmail = {
 
 const updateCustomer = {
   params: Joi.object().keys({
-    customerID: Joi.required().custom(objectId),
+    customerId: Joi.required().custom(objectId),
   }),
   body: Joi.object()
     .keys({ ...bodyRes, createdAt: Joi.string(), updatedAt: Joi.string(), id: Joi.string().required() })
