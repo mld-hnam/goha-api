@@ -51,7 +51,7 @@ const updateCustomerById = async (id, updateBody) => {
     throw new ApiError(httpStatus.NOT_FOUND, 'Customer not found');
   }
   Object.assign(customer, updateBody);
-  await Customer.save();
+  await customer.save();
   return customer;
 };
 
@@ -65,7 +65,7 @@ const deleteCustomerById = async (customerId) => {
   if (!customer) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Customer not found');
   }
-  await Customer.remove();
+  await customer.remove();
   return customer;
 };
 
