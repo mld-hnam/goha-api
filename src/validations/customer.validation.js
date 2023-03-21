@@ -6,6 +6,7 @@ const bodyRes = {
   fullname: Joi.string().required(),
   phone: Joi.string().required(),
   email: Joi.string().required().email(),
+  address: Joi.string().required(),
 };
 
 const createCustomer = {
