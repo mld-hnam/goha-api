@@ -9,6 +9,7 @@ const bodyRes = {
   fullName_conSignee: Joi.string().required(),
   phone_conSignee: Joi.string().required(),
   address_conSignee: Joi.string().required(),
+
   email_conSignee: Joi.string().required().email(),
   status: Joi.string().valid('CANCELED', 'PACKAGED', 'REVEIVED', 'SHIPPING', 'TOVIETNAM'),
   code: Joi.string(),
