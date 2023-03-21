@@ -42,6 +42,11 @@ const orderSchema = mongoose.Schema(
       required: true,
       trim: true,
     },
+    address_conSignee: {
+      type: String,
+      required: true,
+      trim: true,
+    },
     email_conSignee: {
       type: String,
       required: true,
