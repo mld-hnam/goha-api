@@ -25,6 +25,21 @@ const queryOrders = async (filter, options) => {
   return orders;
 };
 
+// const counterOrders = async () => {
+//   const orders = await Order.aggregate([
+//     {
+//       $group: {
+//         _id: '$id',
+//         count: {
+//           $sum: '$totalCost',
+//         },
+//       },
+//     },
+//   ]);
+
+//   return orders;
+// };
+
 /**
  * Get order by id
  * @param {ObjectId} id

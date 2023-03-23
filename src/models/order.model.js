@@ -32,6 +32,12 @@ const orderSchema = mongoose.Schema(
         }
       },
     },
+    address_ship: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+
     fullName_conSignee: {
       type: String,
       required: true,
@@ -65,16 +71,7 @@ const orderSchema = mongoose.Schema(
       required: true,
       trim: true,
     },
-    address: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    packageNumber: {
-      type: String,
-      required: true,
-      trim: true,
-    },
+
     packageDescription: {
       type: String,
       required: true,
@@ -99,6 +96,11 @@ const orderSchema = mongoose.Schema(
       {
         name: String,
         price: Number,
+      },
+    ],
+    packageNumber: [
+      {
+        name: String,
       },
     ],
     insurance: { type: Boolean, default: false },

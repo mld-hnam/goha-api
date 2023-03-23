@@ -6,10 +6,10 @@ const bodyRes = {
   fullName_ship: Joi.string().required(),
   phone_ship: Joi.string().required(),
   email_ship: Joi.string().required().email(),
+  address_ship: Joi.string().required(),
   fullName_conSignee: Joi.string().required(),
   phone_conSignee: Joi.string().required(),
   address_conSignee: Joi.string().required(),
-
   email_conSignee: Joi.string().required().email(),
   status: Joi.string().valid('CANCELED', 'PACKAGED', 'REVEIVED', 'SHIPPING', 'TOVIETNAM'),
   code: Joi.string(),
@@ -20,10 +20,9 @@ const bodyRes = {
   declareValue: Joi.number(),
   paymentBy: Joi.string().required().valid('ZELLE', 'CASH', 'UNPAID'),
   totalCost: Joi.number().required(),
-  address: Joi.string().required(),
-  packageNumber: Joi.string().required(),
   packageDescription: Joi.string().required(),
   fees: Joi.array(),
+  packageNumber: Joi.array(),
 };
 
 const createOrder = {
