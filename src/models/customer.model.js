@@ -38,6 +38,20 @@ const customerSchema = mongoose.Schema(
         }
       },
     },
+    assignee: [
+      {
+        name: String,
+      },
+      {
+        phone: String,
+      },
+      {
+        email: String,
+      },
+      {
+        address: String,
+      },
+    ],
   },
   {
     timestamps: true,
