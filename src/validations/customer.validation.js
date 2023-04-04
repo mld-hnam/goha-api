@@ -7,6 +7,7 @@ const bodyRes = {
   phone: Joi.string().required(),
   email: Joi.string().required().email(),
   address: Joi.string().required(),
+  assignee: Joi.array(),
 };
 
 const createCustomer = {
