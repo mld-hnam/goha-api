@@ -71,12 +71,6 @@ const orderSchema = mongoose.Schema(
       required: true,
       trim: true,
     },
-
-    // packageDescription: {
-    //   type: String,
-    //   required: true,
-    //   trim: true,
-    // },
     flightNo: {
       type: String,
       required: true,
@@ -101,8 +95,6 @@ const orderSchema = mongoose.Schema(
     packageNumber: [
       {
         lbs: String,
-      },
-      {
         description: String,
       },
     ],
