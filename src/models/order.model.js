@@ -9,6 +9,11 @@ const orderSchema = mongoose.Schema(
       required: true,
       trim: true,
     },
+    customerId: {
+      type: String,
+      required: true,
+      trim: true,
+    },
     fullName_ship: {
       type: String,
       required: true,

@@ -3,6 +3,7 @@ const { objectId } = require('./custom.validation');
 
 const bodyRes = {
   userId: Joi.string().required(),
+  customerId: Joi.string().required(),
   fullName_ship: Joi.string().required(),
   phone_ship: Joi.string().required(),
   email_ship: Joi.string().required().email(),
